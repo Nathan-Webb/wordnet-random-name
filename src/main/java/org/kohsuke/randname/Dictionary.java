@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Dictionary of adjectives and nouns.
@@ -14,6 +15,7 @@ import java.util.List;
 public class Dictionary {
     private List<String> nouns = new ArrayList<String>();
     private List<String> adjectives = new ArrayList<String>();
+    private List<String> monsters = new ArrayList<String>();
 
     private final int prime;
 
@@ -21,6 +23,7 @@ public class Dictionary {
         try {
             load("a.txt", adjectives);
             load("n.txt", nouns);
+            load("m.txt", monsters);
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -49,9 +52,13 @@ public class Dictionary {
         return prime;
     }
 
-    public String word(int i) {
-        int a = i%adjectives.size();
-        int n = i/adjectives.size();
+    public String word() {
+
+        Random random = new Random();
+
+        int a = random.nextInt(adjectives.size());
+        int n = random.nextInt(nouns.size());
+        int m = random.nextInt(monsters.size());
 
         return adjectives.get(a)+"_"+nouns.get(n);
     }
