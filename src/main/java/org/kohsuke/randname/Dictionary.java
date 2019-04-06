@@ -16,6 +16,7 @@ public class Dictionary {
     private List<String> nouns = new ArrayList<String>();
     private List<String> adjectives = new ArrayList<String>();
     private List<String> monsters = new ArrayList<String>();
+    private List<String> verbs = new ArrayList<String>();
 
     private final int prime;
 
@@ -24,6 +25,7 @@ public class Dictionary {
             load("a.txt", adjectives);
             load("n.txt", nouns);
             load("m.txt", monsters);
+            load("v.txt", verbs);
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -59,8 +61,8 @@ public class Dictionary {
         int a = random.nextInt(adjectives.size());
         int n = random.nextInt(nouns.size());
         int m = random.nextInt(monsters.size());
-
-        return adjectives.get(a)+"_"+nouns.get(n);
+        int v = random.nextInt(verbs.size());
+        return verbs.get(v) + "_" + adjectives.get(a) + "_" + monsters.get(m);
     }
 
     private void load(String name, List<String> col) throws IOException {
